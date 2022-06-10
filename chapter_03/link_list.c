@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <link_list.h>
 
 // 函数原型声明
 // 创建表头
-struct Node *createHeaderNode();
+struct Node *MakeEmpty();
 
 // 从表头插入
 void insertFirst(struct Node *header, int x);
@@ -40,7 +41,7 @@ int main() {
     struct Node *header;
 
     // 创建表头
-    header = createHeaderNode();
+    header = MakeEmpty();
 
     // 判断表是否为空
     printf("List is empty?: %d\n", isEmpty(header));
@@ -97,7 +98,7 @@ int main() {
 
 
 // 创建表头
-struct Node *createHeaderNode() {
+struct Node *MakeEmpty() {
 
     struct Node *p;
     p = malloc(sizeof(struct Node));
