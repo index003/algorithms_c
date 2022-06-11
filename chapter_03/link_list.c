@@ -1,34 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <link_list.h>
+#include "link_list.h"
 
-// 函数原型声明
-// 创建表头
-struct Node *MakeEmpty();
-
-// 从表头插入
-void insertFirst(struct Node *header, int x);
-
-// 从表尾插入
-void insertLast(struct Node *header, int x);
-
-// 查找x，如果没有找到，返回NULL
-struct Node *find(struct Node *header, int x);
-
-// 查找位置为position的结点,如果没有找到，返回NULL
-struct Node *findKth(struct Node *header, int position);
-
-// 删除第一个值匹配的结点
-void delete(struct Node *header, int x);
-
-// 判断表是否为空
-bool isEmpty(struct Node *header);
-
-// 表中结点个数
-int size(struct Node *header);
-
-void printList(struct Node *header);
 
 struct Node {
     int element;    // node value
@@ -44,7 +17,7 @@ int main() {
     header = MakeEmpty();
 
     // 判断表是否为空
-    printf("List is empty?: %d\n", isEmpty(header));
+    printf("List is empty?: %d\n", IsEmpty(header));
     printf("================================");
     printf("\n");
 
@@ -65,27 +38,27 @@ int main() {
     printf("\n");
 
     // 查找结点值为3的结点
-    node = find(header, 3);
+    node = Find(header, 3);
     if (node == NULL) {
-        printf("not find...\n");
+        printf("not Find...\n");
     } else {
-        printf("find node element: %d\n", node -> element);
+        printf("Find node element: %d\n", node -> element);
     }
     printf("================================");
     printf("\n");
 
     // 查找表中第2个结点
-    node = findKth(header, 2);
+    node = FindKth(header, 2);
     if (node == NULL) {
-        printf("not find...\n");
+        printf("not Find...\n");
     } else {
-        printf("find node element: %d\n", node -> element);
+        printf("Find node element: %d\n", node -> element);
     }
     printf("================================");
     printf("\n");
 
     // 删除结点值为3的结点
-    delete(header, 3);
+    Delete(header, 3);
     printList(header);
     printf("================================");
     printf("\n");
@@ -114,7 +87,7 @@ struct Node *MakeEmpty() {
 }
 
 // 判断表是否为空
-bool isEmpty(struct Node *header) {
+int IsEmpty(struct Node *header) {
     return header -> next == NULL;
 }
 
@@ -166,7 +139,7 @@ void insertLast(struct Node *header, int x) {
 }
 
 // 查找x，如果没有找到，返回NULL
-struct Node *find(struct Node *header, int x) {
+struct Node *Find(struct Node *header, int x) {
     
     struct Node *p;
 
@@ -180,7 +153,7 @@ struct Node *find(struct Node *header, int x) {
 }
 
 // 查找位置为position的结点,如果没有找到，返回NULL
-struct Node *findKth(struct Node *header, int position) {
+struct Node *FindKth(struct Node *header, int position) {
     
     int count = 1;
     struct Node *p;
@@ -205,7 +178,7 @@ struct Node *findKth(struct Node *header, int position) {
 }
 
 // 删除第一个值匹配的结点
-void delete(struct Node *header, int x) {
+void Delete(struct Node *header, int x) {
     
     struct Node *previous; // 被删除结点的前一个结点的指针
     struct Node *p;
