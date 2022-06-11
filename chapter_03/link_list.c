@@ -10,14 +10,23 @@ struct Node {
 
 int main() {
     
-    struct Node *node;
-    struct Node *header;
+    // struct Node *node;
+    List node;
+    // struct Node *header;
+    List header;
 
     // 创建表头
-    header = MakeEmpty();
+    header = makeEmpty();
 
     // 判断表是否为空
-    printf("List is empty?: %d\n", IsEmpty(header));
+    if (isEmpty(header)) {
+        printf("struct Node is empty ? : Yes\n");
+    } else {
+        printf("struct Node is empty ? : No\n");
+    }
+
+    printf("struct Node is empty ? : %d\n", isEmpty(header));
+
     printf("================================");
     printf("\n");
 
@@ -37,43 +46,57 @@ int main() {
     printf("================================");
     printf("\n");
 
+    // 指定位置插入
+    insert(5, header, 3); 
+    printList(header);
+    printf("================================");
+    printf("\n");
+
+    // 更新element为1的值为10
+    update(1, 10, header);
+
+    // 更新position为1的值为20
+    updateKth(1, 20, header); 
+                
     // 查找结点值为3的结点
-    node = Find(header, 3);
+    node = find(header, 3);
     if (node == NULL) {
-        printf("not Find...\n");
+        printf("not find...\n");
     } else {
-        printf("Find node element: %d\n", node -> element);
+        printf("find node element by element: %d\n", node -> element);
     }
     printf("================================");
     printf("\n");
 
     // 查找表中第2个结点
-    node = FindKth(header, 2);
+    node = findKth(header, 2);
     if (node == NULL) {
-        printf("not Find...\n");
+        printf("not find...\n");
     } else {
-        printf("Find node element: %d\n", node -> element);
+        printf("find node element by position: %d\n", node -> element);
     }
     printf("================================");
     printf("\n");
 
     // 删除结点值为3的结点
-    Delete(header, 3);
+    delete(header, 3);
     printList(header);
     printf("================================");
     printf("\n");
 
     // 打印表中结点个数，即表的大小
-    printf("List size: %d\n", size(header));
+    printf("struct Node size: %d\n", size(header));
     printf("================================");
     printf("\n");
 }
 
 
 // 创建表头
-struct Node *MakeEmpty() {
+// struct Node *makeEmpty() {
+List makeEmpty() {
 
-    struct Node *p;
+    // struct Node *p;
+    List p;
     p = malloc(sizeof(struct Node));
 
     if (p == NULL) {
@@ -87,14 +110,22 @@ struct Node *MakeEmpty() {
 }
 
 // 判断表是否为空
-int IsEmpty(struct Node *header) {
+// int isEmpty(struct Node *header) {
+int isEmpty(List header) {
     return header -> next == NULL;
 }
 
-// 从表头插入
-void insertFirst(struct Node *header, int x) {
+// 判断是否最后一个
+int isLast(List L) {
+    
+}
 
-    struct Node *tmp;
+// 从表头插入
+// void insertFirst(struct Node *header, int x) {
+void insertFirst(List header, ElementType x) {
+
+    // struct Node *tmp;
+    List tmp;
 
     tmp = malloc(sizeof(struct Node));
 
@@ -112,10 +143,13 @@ void insertFirst(struct Node *header, int x) {
 }
 
 // 从表尾插入
-void insertLast(struct Node *header, int x) {
+// void insertLast(struct Node *header, int x) {
+void insertLast(List header, ElementType x) {
     
-    struct Node *p;
-    struct Node *tmp;
+    // struct Node *p;
+    // struct Node *tmp;
+    List p;
+    List tmp;
 
     tmp = malloc(sizeof(struct Node));
 
@@ -138,10 +172,55 @@ void insertLast(struct Node *header, int x) {
     return;
 }
 
-// 查找x，如果没有找到，返回NULL
-struct Node *Find(struct Node *header, int x) {
+// 指定位置插入
+void insert(ElementType x, List l, ElementType position) {
+    // struct Node *p;
+    // struct Node *tmp;
+    List tmp;
+    List previous;
+
+    if (position <= 0) {
+        printf("position 不能为负数\n");
+        return;
+    }
+
+    tmp = malloc(sizeof(struct Node));
+
+    if (tmp == NULL) {
+        printf("内存不足\n");
+        return;
+    }
+
+    previous = findKth(l, position - 1);
+    tmp -> element = x; //给结点赋值
+    tmp -> next = previous -> next;
+    previous -> next = tmp;
+
+    return;
+}
+
+// 更新element为x的值为y
+void update(ElementType x, ElementType y, List l) {
     
-    struct Node *p;
+    List tmp;
+    tmp = find(l, x);
+    tmp -> element = y;
+}
+
+// 更新position为x的值为y
+void updateKth(ElementType x, ElementType y, List l) {
+
+    List tmp;
+    tmp = findKth(l, x);
+    tmp -> element = y;
+
+}
+// 查找x，如果没有找到，返回NULL
+// struct Node *find(struct Node *header, int x) {
+List find(List header, ElementType x) {
+    
+    // struct Node *p;
+    List p;
 
     p = header -> next;
 
@@ -153,10 +232,12 @@ struct Node *Find(struct Node *header, int x) {
 }
 
 // 查找位置为position的结点,如果没有找到，返回NULL
-struct Node *FindKth(struct Node *header, int position) {
+// struct Node *findKth(struct Node *header, int position) {
+List findKth(List header, int position) {
     
     int count = 1;
-    struct Node *p;
+    // struct Node *p;
+    List p;
 
     if (position <= 0) {
         printf("position 不能为负数\n");
@@ -178,10 +259,13 @@ struct Node *FindKth(struct Node *header, int position) {
 }
 
 // 删除第一个值匹配的结点
-void Delete(struct Node *header, int x) {
+// void delete(struct Node *header, int x) {
+void delete(List header, int x) {
     
-    struct Node *previous; // 被删除结点的前一个结点的指针
-    struct Node *p;
+    // struct Node *previous; // 被删除结点的前一个结点的指针
+    // struct Node *p;
+    List previous; // 被删除结点的前一个结点的指针
+    List p;
 
     previous = header;
     p = header -> next;
@@ -200,10 +284,12 @@ void Delete(struct Node *header, int x) {
 }
 
 // 表中结点个数
-int size(struct Node *header) {
+// int size(struct Node *header) {
+int size(List header) {
 
     int count = 0;
-    struct Node *p;
+    // struct Node *p;
+    List p;
 
     p = header -> next;
 
@@ -216,13 +302,15 @@ int size(struct Node *header) {
 }
 
 // 
-void printList(struct Node *header) {
+// void printList(struct Node *header) {
+void printList(List header) {
     
-    struct Node *p;
+    // struct Node *p;
+    List p;
     p = header -> next;
 
     while (p != NULL) {
-        printf("node element = %d\n", p -> element);
+        printf("printList:node element = %d\n", p -> element);
         p = p -> next;
     }
 

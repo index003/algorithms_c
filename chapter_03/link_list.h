@@ -7,30 +7,34 @@ typedef PtrToNode Position;
 typedef int ElementType;
 
 // 创建表头
-List MakeEmpty();
+List makeEmpty();
 // 判断表是否为空
-int IsEmpty(List L);
+int isEmpty(List L);
 // 判断是否最后一个
-int IsLast(List L);
+int isLast(List L);
 
 // 查找x，如果没有找到，返回NULL
-Position Find(List L, ElementType X);
+Position find(List L, ElementType X);
 // 查找位置为y的结点,如果没有找到，返回NULL
-Position FindKth(List L, int y);
+Position findKth(List L, int y);
 // 查找当前结点的前一个位置
-Position FindPrevious(ElementType X, List L);
+Position findPrevious(ElementType X, List L);
 
 // 从表头插入
 void insertFirst(List L, int x);
 // 从表尾插入
 void insertLast(List L, int x);
 // 指定位置插入
-void Insert(ElementType X, List L, Position P);
+void insert(ElementType X, List L, ElementType Y);
+// 更新element为x的值
+void update(ElementType X, ElementType Y,  List L);
+// 更新position为x的值
+void updateKth(ElementType X, ElementType Y, List L);
 
 // 删除第一个值匹配的结点
-void Delete(List L, ElementType X);
+void delete(List L, ElementType X);
 // 删除表中所有的结点
-void DeleteList(List L);
+void deleteList(List L);
 
 Position Header(List L);
 Position First(List L);
