@@ -61,37 +61,19 @@ void print_poly(Polynomial poly) {
     for (i = poly -> high_power; i >= 0; i--) {
         j = poly -> coeff_array[i];
         if (j == 0) {
-            
-        } else if (j == 1){
-            if (i != 0) {
-                if (i == poly -> high_power) {
-                    printf("x^%d", i);
-                } else {
-                    printf(" + x^%d", i);
-                }
-            } else {
-                if (i == poly -> high_power) {
-                    printf("%d", j);
-                } else {
-                    printf(" + %d", j);
-                }
-            }
-        } else if (j > 1){
-            if (i != 0) {
-                if (i == poly -> high_power) {
-                    printf("%dx^%d", j, i);
-                } else {
-                    printf(" + %dx^%d", j, i);
-                }
-            } else {
-                if (i == poly -> high_power) {
-                    printf("%d", j);
-                } else {
-                    printf(" + %d", j);
-                }
-            }
+            continue;
+        } else if (j == 1) {
+
         } else {
-           printf("负数不处理了"); 
+            printf("%d", j);
+        }
+        
+        if (i == 0) {
+
+        } else if (i == 1){
+            printf("x + ");
+        } else {
+            printf("x^%d + ", i);
         }
     }
     printf("\n");
