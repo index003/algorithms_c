@@ -19,5 +19,5 @@ SearchTree delete_tree(ElementType X, SearchTree T);
 
 void print_tree(SearchTree T);
 
-#endif  /* _List_H */
+#endif  /* _Tree_H */
 

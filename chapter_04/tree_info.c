@@ -1,5 +1,6 @@
 // 树的节点说明
 typedef struct TreeNode *PtrToNode;
+typedef int element;
 
 struct TreeNode {
     ElementType Element;
@@ -11,6 +12,7 @@ struct TreeNode {
 
 typedef struct TreeNode *PtrToNode;
 typedef PtrToNode Tree;
+typedef int element;
 
 struct TreeNode {
     ElementType Element;
