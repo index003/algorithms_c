@@ -26,15 +26,15 @@ int main() {
     printf("=============\n");
 
     node = find(4, root);
-    printf("find node element is : %d\n", node -> element);
+    printf("find node element is : %d\n", node->element);
     printf("=============\n");
 
     min = find_min(root);
-    printf("min node element is : %d\n", min -> element);
+    printf("min node element is : %d\n", min->element);
     printf("=============\n");
 
     max = find_max(root);
-    printf("max node element is : %d\n", max -> element);
+    printf("max node element is : %d\n", max->element);
     printf("=============\n");
     
     delete_tree(2, root);
@@ -49,8 +49,8 @@ int main() {
 SearchTree make_empty(SearchTree t) {
     
     if (t) {
-        make_empty(t -> left);
-        make_empty(t -> right);
+        make_empty(t->left);
+        make_empty(t->right);
         free(t);
     }
     return NULL;
@@ -63,10 +63,10 @@ Position find(ElementType x, SearchTree t) {
         return NULL;
     }
 
-    if (x < t -> element) {
-        return find(x, t -> left);
-    } else if (x > t -> element) {
-        return find(x, t -> right);
+    if (x < t->element) {
+        return find(x, t->left);
+    } else if (x > t->element) {
+        return find(x, t->right);
     } else {
         return t;
     }
@@ -77,18 +77,18 @@ Position find_min(SearchTree t) {
 
     if (t == NULL) {
         return NULL;
-    } else if (t -> left == NULL){
+    } else if (t->left == NULL){
         return t;
     } else {
-        return find_min(t -> left);
+        return find_min(t->left);
     }
 }
 
 Position find_max(SearchTree t) {
 
     if (t != NULL) {
-        while (t -> right != NULL) {
-            t = t -> right;
+        while (t->right != NULL) {
+            t = t->right;
         }
     }
 
@@ -103,14 +103,14 @@ SearchTree insert_tree(ElementType x, SearchTree t) {
             printf("Out of space!\n");
             return NULL;
         } else {
-            t -> element = x;
-            t -> left = NULL;
-            t -> right = NULL;
+            t->element = x;
+            t->left = NULL;
+            t->right = NULL;
         }
-    } else if (x < t -> element) {
-        t -> left = insert_tree(x, t -> left);
-    } else if (x > t -> element) {
-        t -> right = insert_tree(x, t -> right);
+    } else if (x < t->element) {
+        t->left = insert_tree(x, t->left);
+    } else if (x > t->element) {
+        t->right = insert_tree(x, t->right);
     } else {
         return t;
     }
@@ -123,20 +123,20 @@ SearchTree delete_tree(ElementType x, SearchTree t) {
     if (t == NULL) {
         printf("Empty Tree!\n");
         return NULL;
-    } else if (x < t -> element) {
-        t -> left = delete_tree(x, t -> left);
-    } else if (x > t -> element) {
-        t -> right = delete_tree(x, t -> left);
-    } else if (t -> left && t -> right) {
-        tmp = find_min(t -> right);
-        t -> element = tmp -> element;
-        t -> right = delete_tree(t -> element, t -> right);
+    } else if (x < t->element) {
+        t->left = delete_tree(x, t->left);
+    } else if (x > t->element) {
+        t->right = delete_tree(x, t->left);
+    } else if (t->left && t->right) {
+        tmp = find_min(t->right);
+        t->element = tmp->element;
+        t->right = delete_tree(t->element, t->right);
     } else {
         tmp = t;
-        if (t -> left == NULL) {
-            t = t -> right;
-        } else if (t -> right == NULL) {
-            t = t -> left;
+        if (t->left == NULL) {
+            t = t->right;
+        } else if (t->right == NULL) {
+            t = t->left;
         }
         free(tmp);
     }
@@ -153,16 +153,16 @@ void print_tree(SearchTree t) {
     }
 
     // 打印左子树
-    if (t -> left != NULL) {
-        print_tree(t -> left);
+    if (t->left != NULL) {
+        print_tree(t->left);
     }
 
     // 打印根节点
-    printf("tree element is : %d\n", t -> element);
+    printf("tree element is : %d\n", t->element);
 
     // 打印右子树
-    if (t -> right != NULL) {
-        print_tree(t -> right);
+    if (t->right != NULL) {
+        print_tree(t->right);
     }
 }
 

@@ -56,7 +56,7 @@ Polynomial create_empty_polynomial() {
         printf("内存分配失败\n");
         exit(1);
     }
-    p -> next = NULL;
+    p->next = NULL;
     return p;
 }
 
@@ -69,10 +69,10 @@ void add_term(Polynomial poly, int coeff, int power) {
         printf("内存分配失败\n");
         return;
     }
-    tmp -> coeff = coeff;
-    tmp -> high_power = power;
-    tmp -> next = poly -> next;
-    poly -> next = tmp;
+    tmp->coeff = coeff;
+    tmp->high_power = power;
+    tmp->next = poly->next;
+    poly->next = tmp;
 
     return;
 }
@@ -80,24 +80,24 @@ void add_term(Polynomial poly, int coeff, int power) {
 void print_polynomial(Polynomial poly) {
     
     Polynomial tmp;
-    tmp = poly -> next;
+    tmp = poly->next;
 
     while (tmp != NULL) {
-        if (tmp -> coeff == 1) {
+        if (tmp->coeff == 1) {
             
         } else {
-            printf("%d", tmp -> coeff);
+            printf("%d", tmp->coeff);
         }
 
-        if (tmp -> high_power == 0) {
+        if (tmp->high_power == 0) {
             
-        } else if (tmp -> high_power == 1){
+        } else if (tmp->high_power == 1){
             printf("x");
         } else {
-            printf("x^%d", tmp -> high_power);
+            printf("x^%d", tmp->high_power);
         }
 
-        tmp = tmp -> next;
+        tmp = tmp->next;
         if (tmp != NULL) {
             printf(" + ");
         }
@@ -109,25 +109,25 @@ void add_polynomial(Polynomial poly1, Polynomial poly2, Polynomial poly_sum) {
 
     int max_php1 = max_poly_high_power(poly1);
     int max_php2 = max_poly_high_power(poly2);
-    poly_sum -> high_power = max_value(max_php1, max_php2);
+    poly_sum->high_power = max_value(max_php1, max_php2);
 
-    for (int i = poly_sum -> high_power; i >= 0; i--) {
+    for (int i = poly_sum->high_power; i >= 0; i--) {
         // 这块的逻辑不对，还要找到poly1，poly2对应的位置，要写个find函数，后续补充
-        add_term(poly_sum, poly1 -> coeff + poly2 -> coeff, i);
+        add_term(poly_sum, poly1->coeff + poly2->coeff, i);
     }
 }
 
 int max_poly_high_power(Polynomial poly) {
 
     Polynomial tmp;
-    tmp = poly -> next;
+    tmp = poly->next;
     int max_high_power = 0;
     
     while (tmp != NULL) {
-        if (max_high_power < tmp -> high_power) {
-            max_high_power = tmp -> high_power;
+        if (max_high_power < tmp->high_power) {
+            max_high_power = tmp->high_power;
         }
-        tmp = tmp -> next;
+        tmp = tmp->next;
     }
     return max_high_power;
 }

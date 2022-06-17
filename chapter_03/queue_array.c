@@ -82,13 +82,13 @@ Queue create_queue(int max_elements) {
         return NULL;
     }
     
-    q -> arr = malloc(sizeof(int) * max_elements);
-    if (q -> arr == NULL) {
+    q->arr = malloc(sizeof(int) * max_elements);
+    if (q->arr == NULL) {
         printf("Out of space\n");
         return NULL;
     }
 
-    q -> capacity = max_elements;
+    q->capacity = max_elements;
     make_empty(q);
 
     return q;
@@ -97,19 +97,19 @@ Queue create_queue(int max_elements) {
 // 判断队列是否空
 int is_empty(Queue q) {
     
-    return q -> size == 0;
+    return q->size == 0;
 }
 
 // 判读队列是否满
 int is_full(Queue q) {
 
-    return q -> size == q -> capacity;
+    return q->size == q->capacity;
 }
 
 void dispose_queue(Queue q) { // 释放队列内存空间
 
     if (q != NULL) {
-        free(q -> arr);
+        free(q->arr);
         free(q);
     }
 }
@@ -117,9 +117,9 @@ void dispose_queue(Queue q) { // 释放队列内存空间
 // 清空队列
 void make_empty(Queue q) {
 
-    q -> size = 0;
-    q -> front = 1;
-    q -> rear = 0;
+    q->size = 0;
+    q->front = 1;
+    q->rear = 0;
 }
 
 void en_queue(int x, Queue q) { // 队尾入队
@@ -128,9 +128,9 @@ void en_queue(int x, Queue q) { // 队尾入队
         printf("full queue!\n");
         return;
     } else {
-        q -> size++;
-        q -> rear = succ(q -> rear, q);
-        q -> arr[q -> rear] = x;
+        q->size++;
+        q->rear = succ(q->rear, q);
+        q->arr[q->rear] = x;
     }
 }
 
@@ -140,14 +140,14 @@ void de_queue(Queue q) { // 队头出队
         printf("empty queue\n");
         return;
     } else {
-        q -> size--;
-        q -> front = succ(q -> front, q);
+        q->size--;
+        q->front = succ(q->front, q);
     }
 }
 
 int succ(int index, Queue q) {  // 循环数组的脚标计算
     index++;
-    return index % q -> capacity;
+    return index % q->capacity;
 }
 
 // 获取表头元素值
@@ -157,7 +157,7 @@ int front(Queue q) {
         printf("empty queue\n");
         return 0;
     } else {
-        return q -> arr[q -> front];
+        return q->arr[q->front];
     }
 }
 
@@ -169,9 +169,9 @@ int front_and_dequeue(Queue q) {
         printf("empty queue\n");
         return 0;
     } else {
-        element = q -> arr[q -> front];
-        q -> size--;
-        q -> front = succ(q -> front, q);
+        element = q->arr[q->front];
+        q->size--;
+        q->front = succ(q->front, q);
     }
     return element;
 }
@@ -180,13 +180,13 @@ int front_and_dequeue(Queue q) {
 void print_queue(Queue q) {
 
     int i;
-    int front = q -> front;
-    int rear = q -> rear;
-    int size = q -> size;
-    int capacity = q -> capacity;
+    int front = q->front;
+    int rear = q->rear;
+    int size = q->size;
+    int capacity = q->capacity;
 
     for (i = front; i < front + size; i++) {
-        printf("queue elment is : %d\n", q -> arr[i % capacity]);
+        printf("queue elment is : %d\n", q->arr[i % capacity]);
     }
 }
 

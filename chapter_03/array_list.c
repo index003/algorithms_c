@@ -100,14 +100,14 @@ struct List *createList() {
     struct List *p;
     p = malloc(sizeof(struct List));
 
-    p -> length = 0;
+    p->length = 0;
 
     return p;
 }
 
 // 判断表是否为空
 bool isEmpty(struct List *p) {
-    return p -> length == 0;
+    return p->length == 0;
 }
 
 // 从表头插入
@@ -115,17 +115,17 @@ void insertFirst(struct List *p, int x) {
     
     int i;
 
-    if (p -> length >= SIZE) {
+    if (p->length >= SIZE) {
         printf("表已满\n");
         return;
     }
 
-    for (i = p -> length; i > 0; i--) {
-        p -> elements[i] = p -> elements[i - 1];
+    for (i = p->length; i > 0; i--) {
+        p->elements[i] = p->elements[i - 1];
     }
 
-    p -> elements[0] = x;
-    p -> length++;
+    p->elements[0] = x;
+    p->length++;
 
     return;
 }
@@ -133,14 +133,14 @@ void insertFirst(struct List *p, int x) {
 // 从表尾插入
 void insertLast(struct List *p, int x) {
     
-    int len = p -> length;
+    int len = p->length;
     if (len >= SIZE) {
         printf("表已满\n");
         return;
     }
 
-    p -> elements[len] = x;
-    p -> length++;
+    p->elements[len] = x;
+    p->length++;
 
     return;
 }
@@ -149,8 +149,8 @@ void insertLast(struct List *p, int x) {
 int find(struct List *p, int x) {
     
     int i;
-    for (i = 0; i < p -> length; i++) {
-        if (p -> elements[i] == x) {
+    for (i = 0; i < p->length; i++) {
+        if (p->elements[i] == x) {
             return i;
         }
     }
@@ -166,12 +166,12 @@ int findKth(struct List *p, int position) {
         exit(1);
     }
 
-    if (position > p -> length) {
+    if (position > p->length) {
         printf("position  超出表的长度\n");
         exit(1);
     }
 
-    return p -> elements[position - 1];
+    return p->elements[position - 1];
 }
 
 // 删除第一个值匹配的结点
@@ -179,13 +179,13 @@ void delete(struct List *p, int x) {
     
     int i;
 
-    for (i = 0; i < p -> length; i++) {
-        if (p -> elements[i] == x) {
-            for ( ; i < p -> length - 1; i++) {
-                p -> elements[i] = p -> elements[i + 1];
+    for (i = 0; i < p->length; i++) {
+        if (p->elements[i] == x) {
+            for ( ; i < p->length - 1; i++) {
+                p->elements[i] = p->elements[i + 1];
             }
 
-            p -> length--;
+            p->length--;
             break;
         }
     }
@@ -194,7 +194,7 @@ void delete(struct List *p, int x) {
 // 表中结点个数
 int size(struct List *p) {
 
-    return p -> length;
+    return p->length;
 }
 
 // 
@@ -202,8 +202,8 @@ void printList(struct List *p) {
 
     int i;
 
-    for (i = 0; i < p -> length; i++) {
-        printf("list element is : %d\n", p -> elements[i]);
+    for (i = 0; i < p->length; i++) {
+        printf("list element is : %d\n", p->elements[i]);
     }
 }
 

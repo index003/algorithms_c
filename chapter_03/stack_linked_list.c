@@ -65,21 +65,21 @@ Stack create_stack() {
         printf("Out of space\n");
         return NULL;
     }
-    s -> next = NULL;
+    s->next = NULL;
     return s;
 }
 
 int is_empty(Stack s) {
 
-    return s -> next == NULL;
+    return s->next == NULL;
 }
 void dispose_stack(Stack s) {
 
     Stack tmp;
-    tmp = s -> next;
+    tmp = s->next;
     while (tmp != NULL) {
-        printf("Element is : %d\n", tmp -> element);
-        tmp = tmp -> next;
+        printf("Element is : %d\n", tmp->element);
+        tmp = tmp->next;
     }
     
 }
@@ -104,16 +104,16 @@ void push(int x, Stack s) {
         printf("Out of space!\n");
         return;
     } else {
-        tmp -> element = x;
-        tmp -> next = s -> next;
-        s -> next = tmp;
+        tmp->element = x;
+        tmp->next = s->next;
+        s->next = tmp;
     }
 }
 
 int top(Stack s) {
     
     if (!is_empty(s)) {
-        return s -> next -> element;
+        return s->next->element;
     }
 
     printf("empty stack\n");
@@ -127,8 +127,8 @@ void pop(Stack s) {
         printf("empty stack!\n");
         return;
     } 
-    tmp = s -> next;
-    s -> next = s -> next -> next;
+    tmp = s->next;
+    s->next = s->next->next;
     free(tmp);
     
 }

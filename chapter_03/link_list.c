@@ -63,7 +63,7 @@ int main() {
     if (node == NULL) {
         printf("not find...\n");
     } else {
-        printf("find node element by element: %d\n", node -> element);
+        printf("find node element by element: %d\n", node->element);
     }
     printf("================================");
     printf("\n");
@@ -73,7 +73,7 @@ int main() {
     if (node == NULL) {
         printf("not find...\n");
     } else {
-        printf("find node element by position: %d\n", node -> element);
+        printf("find node element by position: %d\n", node->element);
     }
     printf("================================");
     printf("\n");
@@ -104,7 +104,7 @@ List makeEmpty() {
         exit(1);
     }
 
-    p -> next = NULL;
+    p->next = NULL;
 
     return p;
 }
@@ -112,7 +112,7 @@ List makeEmpty() {
 // 判断表是否为空
 // int isEmpty(struct Node *header) {
 int isEmpty(List header) {
-    return header -> next == NULL;
+    return header->next == NULL;
 }
 
 // 判断是否最后一个
@@ -134,10 +134,10 @@ void insertFirst(List header, ElementType x) {
         return;
     }
 
-    tmp -> element = x; //给结点赋值
-    tmp -> next = header -> next;
+    tmp->element = x; //给结点赋值
+    tmp->next = header->next;
 
-    header -> next = tmp;
+    header->next = tmp;
 
     return;
 }
@@ -158,16 +158,16 @@ void insertLast(List header, ElementType x) {
         return;
     }
 
-    tmp -> element = x; //给结点赋值
-    tmp -> next = NULL;
+    tmp->element = x; //给结点赋值
+    tmp->next = NULL;
 
     p = header;
 
-    while (p -> next != NULL) {
-        p = p -> next;
+    while (p->next != NULL) {
+        p = p->next;
     }
 
-    p -> next = tmp;
+    p->next = tmp;
 
     return;
 }
@@ -192,9 +192,9 @@ void insert(ElementType x, List l, ElementType position) {
     }
 
     previous = findKth(l, position - 1);
-    tmp -> element = x; //给结点赋值
-    tmp -> next = previous -> next;
-    previous -> next = tmp;
+    tmp->element = x; //给结点赋值
+    tmp->next = previous->next;
+    previous->next = tmp;
 
     return;
 }
@@ -204,7 +204,7 @@ void update(ElementType x, ElementType y, List l) {
     
     List tmp;
     tmp = find(l, x);
-    tmp -> element = y;
+    tmp->element = y;
 }
 
 // 更新position为x的值为y
@@ -212,7 +212,7 @@ void updateKth(ElementType x, ElementType y, List l) {
 
     List tmp;
     tmp = findKth(l, x);
-    tmp -> element = y;
+    tmp->element = y;
 
 }
 // 查找x，如果没有找到，返回NULL
@@ -222,10 +222,10 @@ List find(List header, ElementType x) {
     // struct Node *p;
     List p;
 
-    p = header -> next;
+    p = header->next;
 
-    while (p != NULL && p -> element != x) {
-        p = p -> next;
+    while (p != NULL && p->element != x) {
+        p = p->next;
     }
 
     return p;
@@ -244,14 +244,14 @@ List findKth(List header, int position) {
         return NULL;
     }
 
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
         if (count == position) {
             return p;
         }
 
-        p = p -> next;
+        p = p->next;
         count++;
     }
 
@@ -268,16 +268,16 @@ void delete(List header, int x) {
     List p;
 
     previous = header;
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
-        if (p -> element == x) {
-            previous -> next = p -> next;
+        if (p->element == x) {
+            previous->next = p->next;
             free(p);
             break;
         } else {
             previous = p;
-            p = p -> next;
+            p = p->next;
         }
     }
     return;
@@ -291,11 +291,11 @@ int size(List header) {
     // struct Node *p;
     List p;
 
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
         count++;
-        p = p -> next;
+        p = p->next;
     }
 
     return count;
@@ -307,11 +307,11 @@ void printList(List header) {
     
     // struct Node *p;
     List p;
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
-        printf("printList:node element = %d\n", p -> element);
-        p = p -> next;
+        printf("printList:node element = %d\n", p->element);
+        p = p->next;
     }
 
     return;

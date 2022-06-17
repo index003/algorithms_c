@@ -68,7 +68,7 @@ int main() {
     if (node == NULL) {
         printf("not find...\n");
     } else {
-        printf("find node element: %d\n", node -> element);
+        printf("find node element: %d\n", node->element);
     }
     printf("================================");
     printf("\n");
@@ -78,7 +78,7 @@ int main() {
     if (node == NULL) {
         printf("not find...\n");
     } else {
-        printf("find node element: %d\n", node -> element);
+        printf("find node element: %d\n", node->element);
     }
     printf("================================");
     printf("\n");
@@ -107,14 +107,14 @@ struct Node *createHeaderNode() {
         exit(1);
     }
 
-    p -> next = NULL;
+    p->next = NULL;
 
     return p;
 }
 
 // 判断表是否为空
 bool isEmpty(struct Node *header) {
-    return header -> next == NULL;
+    return header->next == NULL;
 }
 
 // 从表头插入
@@ -129,10 +129,10 @@ void insertFirst(struct Node *header, int x) {
         return;
     }
 
-    tmp -> element = x; //给结点赋值
-    tmp -> next = header -> next;
+    tmp->element = x; //给结点赋值
+    tmp->next = header->next;
 
-    header -> next = tmp;
+    header->next = tmp;
 
     return;
 }
@@ -150,16 +150,16 @@ void insertLast(struct Node *header, int x) {
         return;
     }
 
-    tmp -> element = x; //给结点赋值
-    tmp -> next = NULL;
+    tmp->element = x; //给结点赋值
+    tmp->next = NULL;
 
     p = header;
 
-    while (p -> next != NULL) {
-        p = p -> next;
+    while (p->next != NULL) {
+        p = p->next;
     }
 
-    p -> next = tmp;
+    p->next = tmp;
 
     return;
 }
@@ -169,10 +169,10 @@ struct Node *find(struct Node *header, int x) {
     
     struct Node *p;
 
-    p = header -> next;
+    p = header->next;
 
-    while (p != NULL && p -> element != x) {
-        p = p -> next;
+    while (p != NULL && p->element != x) {
+        p = p->next;
     }
 
     return p;
@@ -189,14 +189,14 @@ struct Node *findKth(struct Node *header, int position) {
         return NULL;
     }
 
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
         if (count == position) {
             return p;
         }
 
-        p = p -> next;
+        p = p->next;
         count++;
     }
 
@@ -210,16 +210,16 @@ void delete(struct Node *header, int x) {
     struct Node *p;
 
     previous = header;
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
-        if (p -> element == x) {
-            previous -> next = p -> next;
+        if (p->element == x) {
+            previous->next = p->next;
             free(p);
             break;
         } else {
             previous = p;
-            p = p -> next;
+            p = p->next;
         }
     }
     return;
@@ -231,11 +231,11 @@ int size(struct Node *header) {
     int count = 0;
     struct Node *p;
 
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
         count++;
-        p = p -> next;
+        p = p->next;
     }
 
     return count;
@@ -245,11 +245,11 @@ int size(struct Node *header) {
 void printList(struct Node *header) {
     
     struct Node *p;
-    p = header -> next;
+    p = header->next;
 
     while (p != NULL) {
-        printf("node element = %d\n", p -> element);
-        p = p -> next;
+        printf("node element = %d\n", p->element);
+        p = p->next;
     }
 
     return;

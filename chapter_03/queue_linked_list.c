@@ -78,7 +78,7 @@ Queue create_queue(int max_elements) {
         return NULL;
     }
     
-    q -> next = NULL;
+    q->next = NULL;
 
     return q;
 }
@@ -86,13 +86,13 @@ Queue create_queue(int max_elements) {
 // 判断队列是否空
 int is_empty(Queue q) {
     
-    return q -> next == NULL;
+    return q->next == NULL;
 }
 
 // 清空队列
 void make_empty(Queue q) {
 
-    q -> next = NULL;
+    q->next = NULL;
 }
 
 void en_queue(int x, Queue q) { // 队尾入队,linked_list.firstInsert
@@ -105,10 +105,10 @@ void en_queue(int x, Queue q) { // 队尾入队,linked_list.firstInsert
         return;
     }
 
-    tmp -> element = x; //给结点赋值
-    tmp -> next = q -> next;
+    tmp->element = x; //给结点赋值
+    tmp->next = q->next;
 
-    q -> next = tmp;
+    q->next = tmp;
 
     return;
 }
@@ -119,16 +119,16 @@ void de_queue(Queue q) { // 队头出队,linked_list.lastDelete
     Queue tmp;
 
     previous = q;
-    tmp = q -> next; 
+    tmp = q->next; 
 
     while (tmp != NULL) {
-        if (tmp -> next == NULL) {
-            previous -> next = NULL;
+        if (tmp->next == NULL) {
+            previous->next = NULL;
             free(tmp);
             break;
         } else {
             previous = tmp;
-            tmp = tmp -> next;
+            tmp = tmp->next;
         }
     }
 }
@@ -140,7 +140,7 @@ int front(Queue q) {
         printf("empty queue\n");
         return 0;
     } else {
-        return q -> next -> element;
+        return q->next->element;
     }
 }
 
@@ -149,14 +149,14 @@ int front_and_dequeue(Queue q) {
 
     int element;
     Queue tmp;
-    tmp = q -> next;
+    tmp = q->next;
 
     if (is_empty(q)) {
         printf("empty queue\n");
         return 0;
     } else {
-        element = q -> next -> element;
-        q -> next = tmp -> next;
+        element = q->next->element;
+        q->next = tmp->next;
         free(tmp);
     }
     return element;
@@ -166,11 +166,11 @@ int front_and_dequeue(Queue q) {
 void print_queue(Queue q) {
 
     Queue tmp;
-    tmp = q -> next;
+    tmp = q->next;
 
     while (tmp != NULL) {
-        printf("node element = %d\n", tmp -> element);
-        tmp = tmp -> next;
+        printf("node element = %d\n", tmp->element);
+        tmp = tmp->next;
     }
 
     return;

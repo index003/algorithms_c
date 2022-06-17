@@ -77,39 +77,39 @@ Stack create_stack(int max_elements) {
         return NULL;
     }
 
-    s -> arr = malloc(sizeof(ElementType) * max_elements);
-    if (s -> arr == NULL) {
+    s->arr = malloc(sizeof(ElementType) * max_elements);
+    if (s->arr == NULL) {
         printf("Out of space!\n");
         return NULL;
     }
 
-    s -> capacity = max_elements;
-    s -> top_of_stack = EMPTY_TOS;
+    s->capacity = max_elements;
+    s->top_of_stack = EMPTY_TOS;
 
     return s;
 }
 
 int is_empty(Stack s) {
 
-    return s -> top_of_stack == EMPTY_TOS;
+    return s->top_of_stack == EMPTY_TOS;
 }
 
 int is_full(Stack s) {
 
-    return s -> capacity == s -> top_of_stack + 1;
+    return s->capacity == s->top_of_stack + 1;
 }
 
 void dispose_stack(Stack s) {
 
     if (s != NULL) {
-        free(s -> arr);
+        free(s->arr);
         free(s);
     }
 }
 
 void make_empty(Stack s) {
 
-    s -> top_of_stack = EMPTY_TOS;
+    s->top_of_stack = EMPTY_TOS;
 }
 
 void push(ElementType x, Stack s) {
@@ -118,14 +118,14 @@ void push(ElementType x, Stack s) {
         printf("full stack.\n");
         return;
     } else {
-        s -> arr[++s -> top_of_stack] = x;
+        s->arr[++s->top_of_stack] = x;
     }
 }
 
 int top(Stack s) {
     
     if (!is_empty(s)) {
-        return s -> arr[s -> top_of_stack];
+        return s->arr[s->top_of_stack];
     }
 
     printf("empty stack\n");
@@ -139,7 +139,7 @@ void pop(Stack s) {
         printf("empty stack!\n");
         return;
     } else { 
-        s -> top_of_stack--;
+        s->top_of_stack--;
     }
     
 }
@@ -147,7 +147,7 @@ void pop(Stack s) {
 ElementType top_and_pop(Stack s) {
     
     if(!is_empty(s)) {
-        return s -> arr[s -> top_of_stack--];
+        return s->arr[s->top_of_stack--];
     }
 
     printf("empty stack\n");
@@ -155,8 +155,8 @@ ElementType top_and_pop(Stack s) {
 }
 void print_stack(Stack s) {
     
-    for (int i = 0; i < s -> top_of_stack + 1; i++) {
-        printf("stack elements is : %d\n", s -> arr[i]);
+    for (int i = 0; i < s->top_of_stack + 1; i++) {
+        printf("stack elements is : %d\n", s->arr[i]);
     }
 }
 
