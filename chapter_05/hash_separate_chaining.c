@@ -32,6 +32,24 @@ int main() {
     insert_table(11, table);
     insert_table(3, table);
     print_table(table);
+    printf("================\n");
+    
+    p = find_element(19, table);
+    printf("find_element(19, table): %d\n", p->element);
+    printf("================\n");
+
+    delete_table(3, table);
+    print_table(table);
+    printf("================\n");
+
+    destroy_table(table);
+    if (table->the_lists[0] == NULL) {
+        print_table(table);
+    } else {
+        printf("table is empty!\n");
+    }
+    printf("================\n");
+    
 }
 
 int is_prime(int num) {   // 是否是一个素数 
@@ -99,11 +117,35 @@ HashTable initialize_table(int table_size) {
             h->the_lists[i]->next == NULL;
         }
     }
-
     return h;
 }
 
-void destroy_table(HashTable h) {
+void destroy_table(HashTable h) { // 销毁散列表
+    
+    Position p, q;
+    List l;
+
+    int i;
+    for (i = 0; i < h->table_size; i++) {
+        l = h->the_lists[i];
+        p = l->next;
+
+        while(p) {
+            q = p->next;
+            free(p);
+            p = NULL;
+            /*
+            if (!q) {
+                free(p);
+                p = NULL;
+            } else {
+                free(p);
+                p = q;
+            }
+            
+            */
+        }
+    }
 }
 
 Position find_element(ElementType key, HashTable h) {
@@ -117,7 +159,6 @@ Position find_element(ElementType key, HashTable h) {
     while(p != NULL && p->element != key) {
         p = p->next;
     }
-
     return p;
 }
 
@@ -142,6 +183,23 @@ void insert_table(ElementType key, HashTable h) {
 }
 
 int delete_table(ElementType key, HashTable h) {
+
+    Position pos, previous;
+
+    previous = h->the_lists[hash(key, h->table_size)];
+    pos = h->the_lists[hash(key, h->table_size)]->next;
+
+    while (pos != NULL) {
+        if (pos->element == key) {
+            previous->next = pos->next;
+            free(pos);
+            break;
+        } else {
+            previous = pos;
+            pos = pos->next;
+        }
+    }
+    return 1;
 }
 
 void print_table(HashTable h) {

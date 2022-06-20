@@ -22,7 +22,6 @@ Position find_element(ElementType key, HashTable h);
 void insert_table(ElementType key, HashTable h);
 int delete_table(ElementType key, HashTable h);
 void print_table(HashTable h);
-void print_list(List l);
 
 #endif  /* _HashSep_H */
 
