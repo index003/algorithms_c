@@ -15,25 +15,48 @@ struct HeapStruct {
 int main() {
     
     PriorityQueue pq;
+    int min;
+
     pq = initialize_heap(20);
     insert_heap(7, pq);
+    min = find_min(pq);
     print_heap(pq);
+    printf("min = %d\n", min);
     printf("====================\n");
+
     for (int i = 10; i < 20; i = i + 2) {
         insert_heap(i, pq);
     }
+    delete_min(pq);
+
+    min = find_min(pq);
     print_heap(pq);
+    printf("min = %d\n", min);
     printf("====================\n");
+
     insert_heap(5, pq);
+    min = find_min(pq);
     print_heap(pq);
+    printf("min = %d\n", min);
     printf("====================\n");
+
     insert_heap(9, pq);
     print_heap(pq);
+    min = find_min(pq);
+    printf("min = %d\n", min);
     printf("====================\n");
+
     insert_heap(6, pq);
     print_heap(pq);
+    min = find_min(pq);
+    printf("min = %d\n", min);
     printf("====================\n");
-    
+
+    make_empty(pq);    
+    print_heap(pq);
+    min = find_min(pq);
+    printf("min = %d\n", min);
+    printf("====================\n");
 
 }
 
@@ -91,9 +114,45 @@ void insert_heap(ElementType x, PriorityQueue h) {
 }
 
 ElementType delete_min(PriorityQueue h) {
+    
+    int i, child;
+    ElementType min_element, last_element;
+
+    if (is_empty(h)) {
+        printf("Heap is empty!!!\n");
+        return h->elements[0];
+    } 
+
+    min_element = h->elements[1];
+    last_element = h->elements[h->size--];
+
+    for (i = 1; i * 2 <= h->size; i = child) {
+        child = i * 2;
+
+        if (child != h->size && h->elements[child + 1] < h->elements[child]) {
+            child++;
+        }
+
+        if (last_element > h->elements[child]) {
+            h->elements[i] = h->elements[child];
+        } else {
+            break;
+        }
+    }
+
+    h->elements[i] = last_element;
+
+    return min_element;
 }
 
 ElementType find_min(PriorityQueue h) {
+    
+    if (is_empty(h)) {
+        printf("Heap is empty!!!\n");
+        return 0;
+    } else {
+        return h->elements[1];
+    }
 }
 
 int is_empty(PriorityQueue h) {
@@ -107,15 +166,17 @@ int is_full(PriorityQueue h) {
 }
 
 void print_heap(PriorityQueue h) {
-    
-    printf("PQ Elements is: ");
-    for (int i = 1; i <= h->size; i++) {
-        printf("%d ", h->elements[i]);
+
+    if (is_empty(h)) {
+        printf("The heap is empty!!!\n");
+        exit(0);
+    } else {
+        printf("PQ Elements is: ");
+        for (int i = 1; i <= h->size; i++) {
+            printf("%d ", h->elements[i]);
+        }
+        printf("\n");
     }
-    printf("\n");
 }
-
-
-
 
 
