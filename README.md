@@ -122,6 +122,7 @@ typedef PtrToNode Tree;
 typedef int element;
 
 struct TreeNode {
+
     ElementType Element;
     Tree Left;
     Tree Right;
