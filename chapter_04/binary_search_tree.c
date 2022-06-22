@@ -22,6 +22,8 @@ int main() {
     insert_tree(1, root);
     insert_tree(8, root);
 
+    printf("is binary tree ? 1 yes 2 no : %d\n", is_binary_tree(root));
+
     print_tree(root);
     printf("=============\n");
 
@@ -70,7 +72,6 @@ Position find(ElementType x, SearchTree t) {
     } else {
         return t;
     }
-    
 }
 
 Position find_min(SearchTree t) {
@@ -155,7 +156,7 @@ void print_tree(SearchTree t) {
     // 打印左子树
     if (t->left != NULL) {
         print_tree(t->left);
-    }
+    } 
 
     // 打印根节点
     printf("tree element is : %d\n", t->element);
@@ -166,6 +167,24 @@ void print_tree(SearchTree t) {
     }
 }
 
+int is_binary_tree(SearchTree t) {
 
+    if (t == NULL) {
+        return 1;
+    }
+
+    if (t->left && find_min(t)->element >= t->element) {
+        return 0;
+    }
+
+    if (t->right && find_max(t)->element <= t->element) {
+        return 0;
+    }
+
+    if (is_binary_tree(t->left) && is_binary_tree(t->right)) {
+        return 1;
+    }
+
+}
 
 

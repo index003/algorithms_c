@@ -18,6 +18,6 @@ SearchTree insert_tree(ElementType X, SearchTree T);
 SearchTree delete_tree(ElementType X, SearchTree T);
 
 void print_tree(SearchTree T);
-
+int is_binary_tree(SearchTree T);
 #endif  /* _Tree_H */
 
