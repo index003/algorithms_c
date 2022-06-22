@@ -244,7 +244,7 @@ struct HashTbl {
 insert(插入)等价于Enqueue(入队)
 Deletemin(删除最小)等价于Dequeue(出队)
 
-6.3 二叉对
+6.3 二叉堆
 
 堆是一颗被完全填满的二叉树，有可能例外的是在底层，底层上的元素从左到有填入，即完全二叉树(complete binary tree)
 
@@ -261,78 +261,6 @@ struct HeapStruct {
     int size;
     ElementType *elements;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
