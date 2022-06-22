@@ -95,7 +95,9 @@ struct QueueRecord {
 一个典型的应用：文件结构
 
 // 树的节点说明
+
 typedef struct TreeNode *PtrToNode;
+
 typedef int element;
 
 struct TreeNode {
@@ -114,7 +116,9 @@ struct TreeNode {
 // 二叉树的节点说明
 
 typedef struct TreeNode *PtrToNode;
+
 typedef PtrToNode Tree;
+
 typedef int element;
 
 struct TreeNode {
@@ -132,8 +136,11 @@ struct TreeNode {
 可以用某种统一的方式排序。
 
 struct TreeNode;
+
 typedef struct TreeNode *Position; //给struct Node取一个别名
+
 typedef struct TreeNode *SearchTree; //给struct Node取一个别名
+
 typedef int ElementType;
 
 struct TreeNode {
@@ -160,8 +167,11 @@ AVL(Adelson-Velskii和Landis)树是带有平衡条件的二叉查找树。
 空树的高度定义为-1.
 
 struct AvlTreeNode;
+
 typedef struct AvlTreeNode *Position; //给struct Node取一个别名
+
 typedef struct AvlTreeNode *AvlTree; //给struct Node取一个别名
+
 typedef int ElementType;
 
 struct AvlTreeNode {
@@ -202,11 +212,15 @@ MySql底层使用的是B+Tree的ADT
 就是数组+链表的形式，将散列到同一个值的所有单元保留到一个链表中
 
 typedef int ElementType;
+
 struct ListNode;
+
 typedef struct ListNode *Position;
+
 typedef Position List;
 
 struct HashTbl;
+
 typedef struct HashTbl *HashTable;
 
 struct ListNode {
@@ -237,6 +251,7 @@ Deletemin(删除最小)等价于Dequeue(出队)
 
 
 typedef int ElementType;
+
 typedef struct HeapStruct *PriorityQueue;
 
 struct HeapStruct {
