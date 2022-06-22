@@ -12,6 +12,7 @@
 链表、单链表 (linked list)
 
 struct Node {
+
     int element;    // node value
     struct Node *next; // next node point
 };
@@ -19,6 +20,7 @@ struct Node {
 双链表 (double linked list)
 
 struct Node {
+
     int element;    // node value
     struct Node *previous; // previous node point
     struct Node *next; // next node point
@@ -34,6 +36,7 @@ struct Node {
 栈的链表实现
 
 struct Node {
+
     int element;
     struct Node *next;
 };
@@ -41,6 +44,7 @@ struct Node {
 栈的数组实现
 
 struct StackRecord {
+
     int capacity;   // 栈的容量
     int top_of_stack; // 栈顶脚标
     ElementType *arr; // 数组首元素地址
@@ -60,6 +64,7 @@ struct StackRecord {
 队列的链表实现
 
 struct QueueNode {
+
     int element;  
     Queue next;  
 };
@@ -67,6 +72,7 @@ struct QueueNode {
 队列的数组实现
 
 struct QueueRecord {
+
     int capacity;   // 队列容量
     int size;   // 队列有效数据的大小
     int front;  // 队列头的脚标
@@ -93,6 +99,7 @@ typedef struct TreeNode *PtrToNode;
 typedef int element;
 
 struct TreeNode {
+
     ElementType Element;
     PtrToNode FirstChild;   // 指向第一个孩子节点
     PtrToNode NextSibling;  // 指向兄弟的节点
@@ -130,6 +137,7 @@ typedef struct TreeNode *SearchTree; //给struct Node取一个别名
 typedef int ElementType;
 
 struct TreeNode {
+
     ElementType element;
     SearchTree left;
     SearchTree right;
@@ -157,6 +165,7 @@ typedef struct AvlTreeNode *AvlTree; //给struct Node取一个别名
 typedef int ElementType;
 
 struct AvlTreeNode {
+
     ElementType element;
     AvlTree left;
     AvlTree right;
@@ -201,11 +210,13 @@ struct HashTbl;
 typedef struct HashTbl *HashTable;
 
 struct ListNode {
+
     ElementType element;
     Position next;
 };
 
 struct HashTbl {
+
     int table_size;
     List *the_lists;
 };
