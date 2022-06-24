@@ -47,7 +47,7 @@ void percolate_down(ElementType arr[], int i, int n) {
 void heap_sort(ElementType arr[], int n) {
     
     int i;
-    for (i = n / 2; i >= 0;i--) { /* build heap */
+    for (i = n / 2; i >= 0; i--) { /* build heap */
         percolate_down(arr, i, n);
     }
 
